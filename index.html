@@ -171,7 +171,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🦸 Heróis da Marvel 🦸</h1>
+            <h1> Heróis da Marvel </h1>
             <p>Clique nos cards para ver o nível de cada herói</p>
         </div>
 
@@ -183,17 +183,23 @@
             {
                 nome: "Mulher Maravilha",
                 xp: 5550,
-                emoji: "👸"
+                emoji: "👸",
+                src: 'https://i.pinimg.com/736x/e3/b5/77/e3b577c1c1e1c1e1c1e1c1e1c1e1c1e.jpg',
+                alt: 'imagem da mulher maravilha'
             },
             {
                 nome: "Homem de Ferro",
                 xp: 7800,
-                emoji: "🤖"
+                emoji: "🤖",
+                src: 'https://i.pinimg.com/736x/2f/2a/8c/2f2a8c1c1e1c1e1c1e1c1e1c1e1c1e1e.jpg',
+                alt: 'imagem do homem de ferro'
             },
             {
                 nome: "Capitão América",
                 xp: 9851,
-                emoji: "🛡️"
+                emoji: "🛡️",
+                src: 'https://i.pinimg.com/736x/d1/ce/6e/d1ce6e5049b6b57f5a7c63dd7de2881a.jpg',
+                alt: 'imagem do capitão américa'
             }
         ];
 
@@ -215,7 +221,7 @@
             const nivel = nivelPorXp(hero.xp);
             
             card.innerHTML = `
-                <div class="card-image">${hero.emoji}</div>
+                <div class="card-image" style="background: url('${hero.src}') center/cover no-repeat; font-size: 0;">${hero.emoji}</div>
                 <div class="card-content">
                     <div class="card-name">${hero.nome}</div>
                     <div class="card-xp">⭐ XP: ${hero.xp.toLocaleString('pt-BR')}</div>
