@@ -185,35 +185,43 @@
             {
                 nome: "Mulher Maravilha",
                 xp: 5550,
-                emoji: "👸",
-                src: 'https://www.pngkey.com/png/detail/18-188278_wonder-woman-png-transparent.png',
-                alt: 'imagem da mulher maravilha'
+                emoji: "🦸‍♀️"
             },
             {
                 nome: "Homem de Ferro",
                 xp: 7800,
-                emoji: "🤖",
-                src: 'https://www.pngkey.com/png/detail/88-889362_iron-man-png-transparent.png',
-                alt: 'imagem do homem de ferro'
+                emoji: "🤖"
             },
             {
                 nome: "Capitão América",
                 xp: 9851,
-                emoji: "🛡️",
-                src: 'https://www.pngkey.com/png/detail/95-953372_captain-america-png-transparent.png',
-                alt: 'imagem do capitão américa'
+                emoji: "🛡️"
+            },
+            {
+                nome: "Homem Aranha",
+                xp: 4200,
+                emoji: "🕷️"
+            },
+            {
+                nome: "Thor",
+                xp: 8900,
+                emoji: "⚡"
             }
         ];
 
         function nivelPorXp(valor) {
-            if (valor <= 1000) return "Ferro";
-            if (valor <= 2000) return "Bronze";
-            if (valor <= 5000) return "Prata";
-            if (valor <= 7000) return "Ouro";
-            if (valor <= 8000) return "Platina";
-            if (valor <= 9000) return "Ascendente";
-            if (valor <= 10000) return "Imortal";
-            return "Radiante";
+            const niveis = [
+                { limite: 1000, nome: "Ferro" },
+                { limite: 2000, nome: "Bronze" },
+                { limite: 5000, nome: "Prata" },
+                { limite: 7000, nome: "Ouro" },
+                { limite: 8000, nome: "Platina" },
+                { limite: 9000, nome: "Ascendente" },
+                { limite: 10000, nome: "Imortal" }
+            ];
+            
+            const nivel = niveis.find(n => valor <= n.limite);
+            return nivel ? nivel.nome : "Radiante";
         }
 
         function createCard(hero) {
@@ -223,7 +231,7 @@
             const nivel = nivelPorXp(hero.xp);
             
             card.innerHTML = `
-                <div class="card-image" style="background: url('${hero.src}') center/cover no-repeat;"></div>
+                <div class="card-image">${hero.emoji}</div>
                 <div class="card-content">
                     <div class="card-name">${hero.nome}</div>
                     <div class="card-xp">⭐ XP: ${hero.xp.toLocaleString('pt-BR')}</div>
@@ -237,14 +245,10 @@
             card.addEventListener('click', function() {
                 const cardInfo = card.querySelector('.card-info');
                 const hint = card.querySelector('.card-click-hint');
+                const isHidden = cardInfo.style.display === 'none';
                 
-                if (cardInfo.style.display === 'none') {
-                    cardInfo.style.display = 'flex';
-                    hint.textContent = 'Clique para ocultar o nível';
-                } else {
-                    cardInfo.style.display = 'none';
-                    hint.textContent = 'Clique para ver o nível';
-                }
+                cardInfo.style.display = isHidden ? 'flex' : 'none';
+                hint.textContent = isHidden ? 'Clique para ocultar o nível' : 'Clique para ver o nível';
             });
 
             return card;
